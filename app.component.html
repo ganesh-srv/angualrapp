@@ -1,0 +1,40 @@
+<mat-sidenav-container (backdropClick)="closeRightSideNav()">
+  <mat-sidenav class="end-nav" position="end" [(opened)]="openRightNav">
+
+    <div class="hamburger-wrap">
+      <div class="close-icon">
+        <mat-icon class="close" style="cursor:pointer;" (click)="closeRightSideNav()">close</mat-icon>
+      </div>
+      <div>
+        <ul class="menuItems">
+          <li class="items"  *ngFor="let item of menuItems"><a  style="cursor:pointer;" href="{{item.url}}">{{item.name}}</a>
+          <li>
+        </ul>
+      </div>
+    </div>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="display: flex; flex-direction: column;">
+      <div class="header">
+        <app-header></app-header>
+      </div>
+      <div>
+        <mat-sidenav-container (backdropClick)="closeSideNav()">
+          <mat-sidenav [(opened)]="openSideNav" style="height: 'calc(100vh - 60px)'">
+            <div>
+              <app-all-filters *ngIf="openSideNav"></app-all-filters>
+            </div>
+          </mat-sidenav>
+
+
+          <mat-sidenav-content>
+            <router-outlet> </router-outlet>
+          </mat-sidenav-content>
+        </mat-sidenav-container>
+        <app-spinner></app-spinner>
+      </div>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
